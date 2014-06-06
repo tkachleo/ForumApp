@@ -107,23 +107,23 @@ public class RgistartionPanel extends JPanel {
 	}
 
 	public void submit() {
-		ArrayList<MySession> sessions = myActionListener.getMainFrame()
-				.getSessionList();
-		for (int i = 0; i < sessions.size(); i++) {
-
-			if (sessions
-					.get(i)
-					.getSession()
-					.equals(myActionListener.getMainFrame().getCurrentSession())) {
-				if (SuperSimpleHttpUtils.getRequest(
-						URL + SuperSimpleHttpUtils.IS_USER_EXISTS + "&user="
-								+ sessions.get(i).getUsername()).equals("true")) {
-					JPanel tempPanel = new JPanel();
-					JLabel userTacken = new JLabel("Username is already taken!");
-					tempPanel.add(userTacken);
-					myActionListener.getMainFrame().ChangeSplitPanel(tempPanel);
-
-				} else {
+//		ArrayList<MySession> sessions = myActionListener.getMainFrame()
+//				.getSessionList();
+//		for (int i = 0; i < sessions.size(); i++) {
+//
+//			if (sessions
+//					.get(i)
+//					.getSession()
+//					.equals(myActionListener.getMainFrame().getCurrentSession())) {
+//				if (SuperSimpleHttpUtils.getRequest(
+//						URL + SuperSimpleHttpUtils.IS_USER_EXISTS + "&user="
+//								+ sessions.get(i).getUsername()).equals("true")) {
+//					JPanel tempPanel = new JPanel();
+//					JLabel userTacken = new JLabel("Username is already taken!");
+//					tempPanel.add(userTacken);
+//					myActionListener.getMainFrame().ChangeSplitPanel(tempPanel);
+//
+//				} else {
 					JPanel tempPanel = new JPanel();
 					JLabel userTacken = new JLabel("Registered User: "
 							+ nameText.getText());
@@ -162,9 +162,9 @@ public class RgistartionPanel extends JPanel {
 					LogManager.print("xxxxxxxxxxxxxxxxxxxx" + url);
 					User user = gson.fromJson(url, User.class);
 					System.out.println(user.getName());
-				}
-			}
-		}
+//				}
+//			}
+//		}
 
 	}
 
