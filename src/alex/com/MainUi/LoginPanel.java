@@ -56,21 +56,21 @@ public class LoginPanel  extends JPanel{
 
 
 	public void logUser() {
-		ArrayList<MySession> sessions = this.myActionListener.getMainFrame()
-				.getSessionList();
-		for (int i = 0; i < sessions.size(); i++) {
-			if (sessions
-					.get(i)
-					.getSession()
-					.equals(this.myActionListener.getMainFrame()
-							.getCurrentSession())) {
-				sessions.get(i).setLogged(true);
-				sessions.get(i).setUsername(logInText.getText());
+//		ArrayList<MySession> sessions = this.myActionListener.getMainFrame()
+//				.getSessionList();
+//		for (int i = 0; i < sessions.size(); i++) {
+//			if (sessions
+//					.get(i)
+//					.getSession()
+//					.equals(this.myActionListener.getMainFrame()
+//							.getCurrentSession())) {
+//				sessions.get(i).setLogged(true);
+//				sessions.get(i).setUsername(logInText.getText());
 				ForumPanel fPanel = new ForumPanel(this);
 				fPanel.initForms();
-				this.myActionListener.getMainFrame().ChangeSplitPanel(fPanel);
-			}
-		}
+				this.myActionListener.getMainFrame().changeRightSplitPanel(fPanel);
+//			}
+//		}
 
 	}
 

@@ -16,12 +16,14 @@ public class ForumPanel extends JPanel{
 		ArrayList<JButton> forums = new ArrayList<>();
 		private LoginPanel loginPanel;
 		private JPanel leftPanel;
+		private JPanel newLeftPanel;
 	
 	
 	
 	public ForumPanel(LoginPanel loginPanel) {
 			this.loginPanel =loginPanel;
 			this.leftPanel=loginPanel.getMyActionListener().getMainFrame().getLeftSplitPanel();
+			this.newLeftPanel = new JPanel();
 		}
 
 
@@ -43,7 +45,14 @@ public class ForumPanel extends JPanel{
 
 
 	private void addLeftPanelButtons() {
-		this.leftPanel.add(new JButton("newww"));
+		newLeftPanel.setLayout(new BoxLayout(newLeftPanel, BoxLayout.Y_AXIS));
+		JButton LogOut = new JButton("Log Out");
+		LogOut.setName("LogOut");
+		LogOut.addActionListener(loginPanel.getMyActionListener());
+		newLeftPanel.add(LogOut);		
+		newLeftPanel.add(new JButton("newww"));
+		newLeftPanel.add(new JButton("newww"));
+		this.loginPanel.getMyActionListener().getMainFrame().ChangeLeftSplitPanel(newLeftPanel);
 		
 	}
 

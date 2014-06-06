@@ -81,7 +81,7 @@ public class MainFrame  extends JFrame{
 		rightPanel.add(welcome);
 	}
 
-	private  void BuildLeftPanel() {
+	public  void BuildLeftPanel() {
 		leftPanel = new JPanel();
 		leftPanel.setName("Menu");
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
@@ -101,7 +101,7 @@ public class MainFrame  extends JFrame{
 		JLabel menu = new JLabel("Menu");
 		menu.setFont(font);
 		leftPanel.add(menu,BorderLayout.CENTER);
-		this.buttonActionListner = new MyActionListener(this.rightPanel ,this.splitCenterPanel ,this);
+		this.buttonActionListner = new MyActionListener(this.rightPanel ,this.splitCenterPanel ,this ,this.leftPanel);
 		for (JButton button : buttonsLIst) {
 			button.setAlignmentX(Component.LEFT_ALIGNMENT);
 			button.addActionListener(buttonActionListner);	
@@ -129,7 +129,7 @@ public class MainFrame  extends JFrame{
 		this.sessions.getSessions().add(new MySession(session));
 	}
 
-	public void ChangeSplitPanel(JPanel jPanel) {
+	public void changeRightSplitPanel(JPanel jPanel) {
 		this.splitCenterPanel.setRightComponent(jPanel);
 		
 	}

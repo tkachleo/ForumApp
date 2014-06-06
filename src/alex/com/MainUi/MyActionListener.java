@@ -17,14 +17,16 @@ public class MyActionListener implements ActionListener {
 	private RgistartionPanel reg;
 	private LoginPanel login;
 	private MainFrame mainFrame;
+	private JPanel mainLeftPanel;
 
 
 
-	public MyActionListener(JPanel rightPanel, JSplitPane splitCenterPanel, MainFrame mainFrame ) {
+	public MyActionListener(JPanel rightPanel, JSplitPane splitCenterPanel, MainFrame mainFrame, JPanel leftPanel ) {
 		this.mainPanel = rightPanel;
 		this.reg= new RgistartionPanel(this);
 		this.login = new LoginPanel(rightPanel,this);
 		this.mainFrame = mainFrame;
+		this.mainLeftPanel = leftPanel;
 	}
 
 	
@@ -50,7 +52,7 @@ public class MyActionListener implements ActionListener {
 			MakeLoginPanel("l");
 		break;
 		case "Home" :
-			this.mainFrame.ChangeSplitPanel(mainPanel);
+			this.mainFrame.changeRightSplitPanel(mainPanel);
 		break;
 		}
 
@@ -62,7 +64,7 @@ public class MyActionListener implements ActionListener {
 	private void MakeRegisterPanel(String s) {
 		if(s=="R"){
 			reg.initFrame();
-			this.mainFrame.ChangeSplitPanel(reg);
+			this.mainFrame.changeRightSplitPanel(reg);
 		}
 		if(s=="S"){
 			reg.submit();
@@ -79,7 +81,7 @@ public class MyActionListener implements ActionListener {
 		}
 		else{
 			login.initFrame();
-			this.mainFrame.ChangeSplitPanel(login);
+			this.mainFrame.changeRightSplitPanel(login);
 		}
 				
 	}
@@ -90,7 +92,10 @@ public class MyActionListener implements ActionListener {
 		logoutLable.setForeground(Color.blue);
 		logoutLable.setFont(new Font("Serif", Font.BOLD, 25));
 		logOutPanel.add(logoutLable );
-		this.mainFrame.ChangeSplitPanel(logOutPanel);
+		this.mainFrame.changeRightSplitPanel(logOutPanel);
+		this.mainFrame.ChangeLeftSplitPanel(mainLeftPanel);
+		
+		
 	}
 
 

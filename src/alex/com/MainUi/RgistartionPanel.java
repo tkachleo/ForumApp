@@ -128,7 +128,7 @@ public class RgistartionPanel extends JPanel {
 					JLabel userTacken = new JLabel("Registered User: "
 							+ nameText.getText());
 					tempPanel.add(userTacken);
-					myActionListener.getMainFrame().ChangeSplitPanel(tempPanel);
+					myActionListener.getMainFrame().changeRightSplitPanel(tempPanel);
 					Emailer emailer = new Emailer();
 					emailer.sendEmail(
 							nameText.getText(),
