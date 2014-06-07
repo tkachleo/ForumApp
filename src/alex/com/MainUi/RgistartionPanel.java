@@ -147,21 +147,32 @@ public class RgistartionPanel extends JPanel {
 					// } catch (UnsupportedEncodingException e) {
 					// e.printStackTrace();
 					// }
+					
+					String question = "";
+					String answer = "";
+					
+					try {
+						question = URLEncoder.encode(qustionText.getText(), "UTF-8");
+						answer = URLEncoder.encode(answerText.getText(), "UTF-8");
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
 
 					SuperSimpleHttpUtils.getRequest(URL
 							+ SuperSimpleHttpUtils.ADD_NEW_USER + "&user="
 							+ nameText.getText() + "&email="
 							+ emailText.getText() + "&pass="
 							+ new String(passText.getPassword()) + "&question="
-							+ qustionText.getText() + "&answer="
-							+ answerText.getText());
+							+ question + "&answer="
+							+ answer);
 					Gson gson = new Gson();
-					String url = SuperSimpleHttpUtils.getRequest(URL
+					/*String url = SuperSimpleHttpUtils.getRequest(URL
 							+ SuperSimpleHttpUtils.GET_USER + "&name="
 							+ nameText.getText());
 					LogManager.print("xxxxxxxxxxxxxxxxxxxx" + url);
 					User user = gson.fromJson(url, User.class);
-					System.out.println(user.getName());
+					System.out.println(user.getName());*/
+					// What was the use of that??
 //				}
 //			}
 //		}
