@@ -129,15 +129,15 @@ public class RgistartionPanel extends JPanel {
 							+ nameText.getText());
 					tempPanel.add(userTacken);
 					myActionListener.getMainFrame().changeRightSplitPanel(tempPanel);
-					Emailer emailer = new Emailer();
-					emailer.sendEmail(
-							nameText.getText(),
-							"Verification Mail",
-							"Hello and Welcome to our forum - "
-									+ nameText.getText()
-									+ ".  Please click this link to verify yourself : tkach.herokuapp.com/verification?username="
-									+ nameText.getText());
-					LogManager.print("Activated send mail function!");
+//					Emailer emailer = new Emailer();
+//					emailer.sendEmail(
+//							nameText.getText(),
+//							"Verification Mail",
+//							"Hello and Welcome to our forum - "
+//									+ nameText.getText()
+//									+ ".  Please click this link to verify yourself : tkach.herokuapp.com/verification?username="
+//									+ nameText.getText());
+//					LogManager.print("Activated send mail function!");
 					// String question = "";
 					// String answer = "";
 					// try {
@@ -158,14 +158,16 @@ public class RgistartionPanel extends JPanel {
 						e.printStackTrace();
 					}
 
-					SuperSimpleHttpUtils.getRequest(URL
+					String s=SuperSimpleHttpUtils.getRequest(URL
 							+ SuperSimpleHttpUtils.ADD_NEW_USER + "&user="
 							+ nameText.getText() + "&email="
 							+ emailText.getText() + "&pass="
 							+ new String(passText.getPassword()) + "&question="
 							+ question + "&answer="
 							+ answer);
-					Gson gson = new Gson();
+					
+					
+//					Gson gson = new Gson();
 					/*String url = SuperSimpleHttpUtils.getRequest(URL
 							+ SuperSimpleHttpUtils.GET_USER + "&name="
 							+ nameText.getText());

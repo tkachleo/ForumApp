@@ -9,8 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
+import com.forum.client.util.SuperSimpleHttpUtils;
 import com.forum.client.util.MySession;
+import com.forum.client.util.SuperSimpleHttpUtils;
 
 public class LoginPanel  extends JPanel{
 
@@ -23,6 +24,9 @@ public class LoginPanel  extends JPanel{
 	private static JPasswordField passText;
 	ArrayList<JButton> forums = new ArrayList<>();
 	private MyActionListener myActionListener;
+	private final String URL = "http://tkach.herokuapp.com/request?MSG_NUM=";
+	private ForumPanel fPanel;
+	
 	public LoginPanel(JPanel rightPanel, MyActionListener myActionListener) {
 		this.rightPanel=rightPanel;
 		this.myActionListener=myActionListener;
@@ -56,22 +60,23 @@ public class LoginPanel  extends JPanel{
 
 
 	public void logUser() {
-//		ArrayList<MySession> sessions = this.myActionListener.getMainFrame()
-//				.getSessionList();
-//		for (int i = 0; i < sessions.size(); i++) {
-//			if (sessions
-//					.get(i)
-//					.getSession()
-//					.equals(this.myActionListener.getMainFrame()
-//							.getCurrentSession())) {
-//				sessions.get(i).setLogged(true);
-//				sessions.get(i).setUsername(logInText.getText());
-				ForumPanel fPanel = new ForumPanel(this);
-				fPanel.initForms();
-				this.myActionListener.getMainFrame().changeRightSplitPanel(fPanel);
-//			}
-//		}
-
+		String exist = SuperSimpleHttpUtils.getRequest(URL
+				+ SuperSimpleHttpUtils.IS_USER_EXISTS + "&user="
+				+ logInText.getText());
+		if(exist.equals("true")){
+		this.fPanel = new ForumPanel(this, myActionListener);
+		fPanel.initForms();
+		this.myActionListener.getMainFrame().changeRightSplitPanel(fPanel);
+		}
+		else{
+			JPanel userNotExistPanel = new JPanel();
+			JLabel userNotExsitLabel = new JLabel("User not Exist");
+			userNotExsitLabel.setForeground(Color.blue);
+			userNotExsitLabel.setFont(new Font("Serif", Font.BOLD, 25));
+			userNotExistPanel.add(userNotExsitLabel );
+			this.myActionListener.getMainFrame().changeRightSplitPanel(userNotExistPanel);
+			
+		}
 	}
 
 
@@ -83,6 +88,12 @@ public class LoginPanel  extends JPanel{
 	public MyActionListener getMyActionListener(){
 		return this.myActionListener;
 	}
+
+	public ForumPanel getfPanel() {
+		return fPanel;
+	}
+	
+	
 
 
 

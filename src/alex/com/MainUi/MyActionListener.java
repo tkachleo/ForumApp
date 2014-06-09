@@ -18,6 +18,9 @@ public class MyActionListener implements ActionListener {
 	private LoginPanel login;
 	private MainFrame mainFrame;
 	private JPanel mainLeftPanel;
+	private SubForumPanel subForum;
+	private ThreadPanel threadPanel;
+	private InsideThreadPanel inThread;
 
 
 
@@ -27,6 +30,10 @@ public class MyActionListener implements ActionListener {
 		this.login = new LoginPanel(rightPanel,this);
 		this.mainFrame = mainFrame;
 		this.mainLeftPanel = leftPanel;
+		this.subForum  = new SubForumPanel(this);
+		this.threadPanel = new ThreadPanel(this);
+		this.inThread = new InsideThreadPanel(this); 
+		
 	}
 
 	
@@ -34,6 +41,7 @@ public class MyActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton source = (JButton) e.getSource();
+		System.out.println(source.getName());
 		switch (source.getName()) {
 		case "Register": 
 			MakeRegisterPanel("R");
@@ -53,13 +61,61 @@ public class MyActionListener implements ActionListener {
 		break;
 		case "Home" :
 			this.mainFrame.changeRightSplitPanel(mainPanel);
+			break;
+		case "mainForums":
+			this.mainFrame.changeRightSplitPanel(this.login.getfPanel());
+			break;
+		case "send":
+			threadPressed("send",source);
+			break;
+		default: 
+			for (JButton  button  : ForumPanel.getButtonForums()) {
+				if(button.equals(source)){
+					mainForumPressed(button);
+				}
+			}
+			for (JButton  button  : subForum.getSubForumButton()) {
+				if(button.equals(source)){
+					subForumPressed(button);
+				}
+			}
+			for (JButton  button  : threadPanel.getthreadArrayButto()) {
+				if(button.equals(source)){
+					threadPressed("", button);
+				}
+			}
 		break;
 		}
 
 	}
 
 
-	
+
+	private void threadPressed(String string, JButton button) {
+		if (string.equals("send")) {
+			this.inThread.addComment();
+			
+		} else {
+			this.inThread.init(button, threadPanel);
+		}
+
+	}
+
+
+	private void subForumPressed(JButton button) {
+		this.threadPanel.init(button, login.getfPanel());
+		
+	}
+
+
+
+	private void mainForumPressed(JButton button) {
+		this.subForum.init(button , login.getfPanel());
+		
+		
+	}
+
+
 
 	private void MakeRegisterPanel(String s) {
 		if(s=="R"){
