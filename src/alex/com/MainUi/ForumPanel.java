@@ -87,4 +87,10 @@ public class ForumPanel extends JPanel{
 		
 	}
 
+
+
+	public JPanel getNewLeftPanel() {
+		return newLeftPanel;
+	}
+
 }

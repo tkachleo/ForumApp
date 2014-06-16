@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 import com.forum.client.util.MySession;
@@ -134,6 +135,11 @@ public class MainFrame  extends JFrame{
 		
 	}
 	
+	public void changeRightSplitPanelScroll(JScrollPane jPanel) {
+		this.splitCenterPanel.setRightComponent(jPanel);
+		
+	}
+	
 	public void ChangeLeftSplitPanel(JPanel jPanel) {
 		this.splitCenterPanel.setLeftComponent(jPanel);
 		
@@ -142,6 +148,14 @@ public class MainFrame  extends JFrame{
 	public JPanel getLeftSplitPanel(){
 		return (JPanel) this.splitCenterPanel.getLeftComponent();
 		
+	}
+
+	public JSplitPane getSplitCenterPanel() {
+		return splitCenterPanel;
+	}
+
+	public JPanel getLeftPanel() {
+		return leftPanel;
 	}
 	
 	

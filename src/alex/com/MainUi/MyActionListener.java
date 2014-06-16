@@ -68,6 +68,17 @@ public class MyActionListener implements ActionListener {
 		case "send":
 			threadPressed("send",source);
 			break;
+		case "newThread":
+			addnewThread();
+			break;
+		case "addnewThread":
+			addpreesedinNewThread();
+			break;
+//		case "backTosub":
+//			this.mainFrame.changeRightSplitPanel(this.subForum);
+//			this.mainFrame.ChangeLeftSplitPanel(this.threadPanel.getNewLeftPanel());
+//			break;
+			
 		default: 
 			for (JButton  button  : ForumPanel.getButtonForums()) {
 				if(button.equals(source)){
@@ -87,6 +98,20 @@ public class MyActionListener implements ActionListener {
 		break;
 		}
 
+	}
+
+
+
+	private void addpreesedinNewThread() {
+		this.threadPanel.addnewThreadPressed();
+		
+	}
+
+
+
+	private void addnewThread() {
+		this.threadPanel.addnewThread();
+		
 	}
 
 
@@ -158,6 +183,12 @@ public class MyActionListener implements ActionListener {
 
 	public MainFrame getMainFrame() {
 		return this.mainFrame;
+	}
+
+
+
+	public LoginPanel getLogin() {
+		return login;
 	}
 
 }

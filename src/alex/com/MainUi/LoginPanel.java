@@ -26,6 +26,7 @@ public class LoginPanel  extends JPanel{
 	private MyActionListener myActionListener;
 	private final String URL = "http://tkach.herokuapp.com/request?MSG_NUM=";
 	private ForumPanel fPanel;
+	private String logedUser;
 	
 	public LoginPanel(JPanel rightPanel, MyActionListener myActionListener) {
 		this.rightPanel=rightPanel;
@@ -63,6 +64,7 @@ public class LoginPanel  extends JPanel{
 		String exist = SuperSimpleHttpUtils.getRequest(URL
 				+ SuperSimpleHttpUtils.IS_USER_EXISTS + "&user="
 				+ logInText.getText());
+		this.logedUser = logInText.getText();
 		if(exist.equals("true")){
 		this.fPanel = new ForumPanel(this, myActionListener);
 		fPanel.initForms();
@@ -77,6 +79,9 @@ public class LoginPanel  extends JPanel{
 			this.myActionListener.getMainFrame().changeRightSplitPanel(userNotExistPanel);
 			
 		}
+		logInText.setText("");
+		passText.setText("");
+		
 	}
 
 
@@ -91,6 +96,10 @@ public class LoginPanel  extends JPanel{
 
 	public ForumPanel getfPanel() {
 		return fPanel;
+	}
+
+	public String getLogedUser() {
+		return logedUser;
 	}
 	
 	
