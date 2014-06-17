@@ -2,6 +2,8 @@ package alex.com.MainUi;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -61,24 +63,32 @@ public class LoginPanel  extends JPanel{
 
 
 	public void logUser() {
-		String exist = SuperSimpleHttpUtils.getRequest(URL
-				+ SuperSimpleHttpUtils.IS_USER_EXISTS + "&user="
-				+ logInText.getText());
-		this.logedUser = logInText.getText();
-		if(exist.equals("true")){
-		this.fPanel = new ForumPanel(this, myActionListener);
-		fPanel.initForms();
-		this.myActionListener.getMainFrame().changeRightSplitPanel(fPanel);
-		}
-		else{
-			JPanel userNotExistPanel = new JPanel();
-			JLabel userNotExsitLabel = new JLabel("User not Exist");
-			userNotExsitLabel.setForeground(Color.blue);
-			userNotExsitLabel.setFont(new Font("Serif", Font.BOLD, 25));
-			userNotExistPanel.add(userNotExsitLabel );
-			this.myActionListener.getMainFrame().changeRightSplitPanel(userNotExistPanel);
+		try {
+			this.logedUser = logInText.getText();
+			String username = URLEncoder.encode(logedUser, "UTF-8");
+			String exist = SuperSimpleHttpUtils.getRequest(URL
+					+ SuperSimpleHttpUtils.IS_USER_EXISTS + "&user="
+					+ username);
+			if(exist.equals("true")){
+			this.fPanel = new ForumPanel(this, myActionListener);
+			fPanel.initForms();
+			this.myActionListener.getMainFrame().changeRightSplitPanel(fPanel);
+			}
+			else{
+				JPanel userNotExistPanel = new JPanel();
+				JLabel userNotExsitLabel = new JLabel("User not Exist");
+				userNotExsitLabel.setForeground(Color.blue);
+				userNotExsitLabel.setFont(new Font("Serif", Font.BOLD, 25));
+				userNotExistPanel.add(userNotExsitLabel );
+				this.myActionListener.getMainFrame().changeRightSplitPanel(userNotExistPanel);
+				
+			}
 			
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
 		logInText.setText("");
 		passText.setText("");
 		

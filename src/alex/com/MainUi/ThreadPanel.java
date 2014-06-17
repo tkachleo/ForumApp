@@ -144,8 +144,13 @@ public class ThreadPanel extends JPanel{
 		try {
 			String text = "";
 			text = URLEncoder.encode(addNewThreadText.getText(), "UTF-8");
-			String s = SuperSimpleHttpUtils.getRequest(URL+SuperSimpleHttpUtils.ADD_NEW_THREAD + "&user="+"other" + "&forum="+this.forumName+
-					"&sub="+this.subNmae+"&forum="+this.forumName+"&caption="+"what" +"&text="+text);
+			String user = myActionListener.getLogin().getLogedUser();
+			user = URLEncoder.encode(user, "UTF-8");
+			this.forumName =URLEncoder.encode(this.forumName, "UTF-8");
+			this.subNmae =URLEncoder.encode(this.subNmae, "UTF-8");
+			String caption = URLEncoder.encode("what", "UTF-8");
+			String s = SuperSimpleHttpUtils.getRequest(URL+SuperSimpleHttpUtils.ADD_NEW_THREAD + "&user="+user + "&forum="+this.forumName+
+					"&sub="+this.subNmae+"&forum="+this.forumName+"&caption="+caption +"&text="+text);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

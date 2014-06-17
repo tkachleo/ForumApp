@@ -82,6 +82,10 @@ public class ForumPanel extends JPanel{
 		MainForumsPage.setName("mainForums");
 		MainForumsPage.addActionListener(myActionListener);
 		newLeftPanel.add(MainForumsPage);
+//		JButton addNewMainForum = new JButton("New Main Forum");
+////		MainForumsPage.setName("NewMainForum");
+////		MainForumsPage.addActionListener(myActionListener);
+////		newLeftPanel.add(addNewMainForum);
 		
 		this.loginPanel.getMyActionListener().getMainFrame().ChangeLeftSplitPanel(newLeftPanel);
 		

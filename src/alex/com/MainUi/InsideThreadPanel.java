@@ -54,7 +54,7 @@ public class InsideThreadPanel extends JPanel {
 		
 	}
 
-	private void changeLeftPanel() {
+	public void changeLeftPanel() {
 		JPanel left =myActionListener.getMainFrame().getLeftSplitPanel();
 		if (left.getComponentCount() == 3) {
 			left.remove(2);

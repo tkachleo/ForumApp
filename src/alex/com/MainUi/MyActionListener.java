@@ -61,9 +61,11 @@ public class MyActionListener implements ActionListener {
 		break;
 		case "Home" :
 			this.mainFrame.changeRightSplitPanel(mainPanel);
+			
 			break;
 		case "mainForums":
 			this.mainFrame.changeRightSplitPanel(this.login.getfPanel());
+			this.inThread.changeLeftPanel();
 			break;
 		case "send":
 			threadPressed("send",source);

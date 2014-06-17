@@ -150,10 +150,15 @@ public class RgistartionPanel extends JPanel {
 					
 					String question = "";
 					String answer = "";
+					String email="";
+					String pass="";
 					
 					try {
 						question = URLEncoder.encode(qustionText.getText(), "UTF-8");
 						answer = URLEncoder.encode(answerText.getText(), "UTF-8");
+						email = URLEncoder.encode(emailText.getText(), "UTF-8");
+						pass = URLEncoder.encode(new String(passText.getPassword()), "UTF-8");
+						
 					} catch (UnsupportedEncodingException e) {
 						e.printStackTrace();
 					}
@@ -161,8 +166,8 @@ public class RgistartionPanel extends JPanel {
 					String s=SuperSimpleHttpUtils.getRequest(URL
 							+ SuperSimpleHttpUtils.ADD_NEW_USER + "&user="
 							+ nameText.getText() + "&email="
-							+ emailText.getText() + "&pass="
-							+ new String(passText.getPassword()) + "&question="
+							+ email + "&pass="
+							+ pass + "&question="
 							+ question + "&answer="
 							+ answer);
 					
